@@ -3,16 +3,23 @@
 " Last change: 2011-12-06
 " v0.1
 
+" For rspec 2: default 'rspec' command
+" For rspec 1, use this in your config file:
+" let g:ruby_conque_rspec_command='spec'
+if !exists('g:ruby_conque_rspec_command')
+  let g:ruby_conque_rspec_command='rspec'
+endif
+
 function RunRubyCurrentFileConque()
   execute "ConqueTermSplit ruby" bufname('%')
 endfunction
 
 function RunRspecCurrentLineConque()
-  execute "ConqueTermSplit rspec" bufname('%') " -l "  line('.') " --color --format doc"
+  execute "ConqueTermSplit " g:ruby_conque_rspec_command bufname('%') " -l "  line('.') " --color"
 endfunction
 
 function RunRspecCurrentFileConque()
-  execute "ConqueTermSplit rspec" bufname('%') " --color --format doc"
+  execute "ConqueTermSplit " g:ruby_conque_rspec_command bufname('%') " --color"
 endfunction
 
 function RunRakeConque()

@@ -14,6 +14,14 @@ vim-ruby-conque.vim
  * Install: copy plugin/* to ~/.vim/plugin or if using pathogen, 
    copy the whole directroy to ~/.vim/bundle
 
+Configuration
+--------------
+
+ By default, this plugin uses the 'rpec' command to run RSpec2. If you are on RSpec 1, 
+ please set this in your vimrc to use 'spec' instead:
+
+    let g:ruby_conque_rspec_command='spec'
+
 Contribute
 --------------
  * Like it? Fork it and contribute :)
