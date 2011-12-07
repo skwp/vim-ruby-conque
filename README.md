@@ -17,8 +17,8 @@ vim-ruby-conque.vim
 Configuration
 --------------
 
- By default, this plugin uses the 'rpec' command to run RSpec2. If you are on RSpec 1, 
- please set this in your vimrc to use 'spec' instead:
+This plugin tries to detect whether you use 'rspec' (rspec2) or 
+'spec' (rspec1) and set the default executable correctly. To override in your ~/.vimrc:
 
     let g:ruby_conque_rspec_command='spec'
 

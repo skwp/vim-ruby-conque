@@ -3,11 +3,23 @@
 " Last change: 2011-12-06
 " v0.1
 
-" For rspec 2: default 'rspec' command
-" For rspec 1, use this in your config file:
+"
+" Automatically uses 'rspec' if you have rspec2
+" installed, or 'spec' for rspec1. You can override
+" This by setting up your vimrc like this:
+"
 " let g:ruby_conque_rspec_command='spec'
+" 
 if !exists('g:ruby_conque_rspec_command')
-  let g:ruby_conque_rspec_command='rspec'
+  if executable('rspec')
+    let g:ruby_conque_rspec_command='rspec'
+  elseif executable('spec')
+    let g:ruby_conque_rspec_command='spec'
+  else
+    echohl ErrorMsg
+    echo "Warning: 'spec' or 'rspec' could not be found in your path."
+    echohl NONE
+  endif
 endif
 
 function RunRubyCurrentFileConque()
