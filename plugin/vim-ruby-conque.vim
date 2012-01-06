@@ -30,20 +30,29 @@ if !exists('g:ruby_conque_rspec_command')
   endif
 endif
 
-function RunRubyCurrentFileConque()
-  execute "ConqueTermSplit ruby" bufname('%')
+" Always deletes any existing instance prior to runing the next one
+function! RunSingleConque(command)
+  try
+    exec "bdelete " . g:single_conque.buffer_name
+  catch
+  endtry
+  let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'])
 endfunction
 
-function RunRspecCurrentLineConque()
-  execute "ConqueTermSplit " g:ruby_conque_rspec_command bufname('%') " -l "  line('.') " --color"
+function! RunRubyCurrentFileConque()
+  call RunSingleConque("ruby " . bufname('%'))
 endfunction
 
-function RunRspecCurrentFileConque()
-  execute "ConqueTermSplit " g:ruby_conque_rspec_command bufname('%') " --color"
+function! RunRspecCurrentLineConque()
+  call RunSingleConque(g:ruby_conque_rspec_command . " " . bufname('%') . " -l "  . line('.') . " --color")
 endfunction
 
-function RunRakeConque()
-  execute "ConqueTermSplit rake"
+function! RunRspecCurrentFileConque()
+  call RunSingleConque(g:ruby_conque_rspec_command . " " . bufname('%') . " --color")
+endfunction
+
+function! RunRakeConque()
+  call RunSingleConque("rake")
 endfunction
 
 nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR>
