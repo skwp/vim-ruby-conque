@@ -51,6 +51,14 @@ function! RunRspecCurrentFileConque()
   call RunSingleConque(g:ruby_conque_rspec_command . " " . bufname('%') . " --color")
 endfunction
 
+function! RunCucumberCurrentLineConque()
+  call RunSingleConque("cucumber" . " " . bufname('%') . ":" . line('.'))
+endfunction
+ 
+function! RunCucumberCurrentFileConque()
+  call RunSingleConque("cucumber" . " " . bufname('%'))
+endfunction
+
 function! RunRakeConque()
   call RunSingleConque("rake")
 endfunction
@@ -58,4 +66,6 @@ endfunction
 nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR>
 nmap <silent> <Leader>ss :call RunRspecCurrentFileConque()<CR>
 nmap <silent> <Leader>ll :call RunRspecCurrentLineConque()<CR>
+nmap <silent> <Leader>cl :call RunCucumberCurrentLineConque()<CR>
+nmap <silent> <Leader>cc :call RunCucumberCurrentFileConque()<CR>
 nmap <silent> <Leader>RR :call RunRakeConque()<CR>
