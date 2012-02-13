@@ -2,7 +2,7 @@ vim-ruby-conque.vim
 ============
 
  * Colorized Ruby, Rake, RSpec, and Cucumber output in vim using ConqueTerm
- * Dead simple -  ~20 lines of code hi
+ * Dead simple -  ~20 lines of code
  * Sensible keybindings (feel free to change):
  
 ```
