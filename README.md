@@ -2,7 +2,6 @@ vim-ruby-conque.vim
 ============
 
  * Colorized Ruby, Rake, RSpec, and Cucumber output in vim using ConqueTerm
- * Dead simple -  ~20 lines of code
  * Sensible keybindings (feel free to change):
  
 ```
@@ -16,9 +15,28 @@ vim-ruby-conque.vim
 ```
 
  * Requires: http://code.google.com/p/conque/
+ * Github mirror: https://github.com/rson/vim-conque
 
  * Install: copy plugin/* to ~/.vim/plugin or if using pathogen, 
    copy the whole directroy to ~/.vim/bundle
+
+Usage
+-------------
+This fork differs from the original in that I've modified the Conque buffers key bindings and
+added the ability to repeat your last command, allowing you to repeat a test while editing elsewhere.
+
+When I use Conque, despite setting it not to enter Insert mode, it still enters insert mode.
+I've added bindings to both insert and normal mode to remove the annoyance of this issue as well
+as make navigation within the test buffer more pleasant.
+
+Upon running a test your cursor will be in the Conque buffer, you can use these commands:
+
+    q   closes/quits the buffer
+    n   goes to the next Failure message.
+    p   goes to the previous Failure message.
+    f   goes to the Finished At section for an overview of the test.
+
+
 
 Configuration
 --------------
