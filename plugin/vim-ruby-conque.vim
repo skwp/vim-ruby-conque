@@ -74,15 +74,21 @@ function! RunLastConqueCommand()
 endfunction
 
 " Get around Conques annoying trapping of input in some kind of strange
-" inputless input mode. Also add q to close the buffer. Could be enhanced
-" to allow n and p to jump between test cases or enter to go to the line.
+" inputless input mode. Also added q to close the buffer. n and p jump between
+" errors in the output buffer.
 function RubyConqueControls(single_conque)
   :map <buffer> j j
   :map <buffer> k k
   :map <buffer> q <C-w>c
+  :map <silent><buffer> n /^\s\+\d\+)<CR>:noh<CR>zt
+  :map <silent><buffer> p ?^\s\+\d\+)<CR>:noh<CR>zt
+  :map <silent><buffer> f /Finished in<CR>:noh<CR>zt
   :imap <buffer> j <Esc>j
   :imap <buffer> k <Esc>k
   :imap <buffer> q <Esc><C-w>c
+  :imap <silent> <buffer> n <Esc>/^\s\+\d\+)<CR>:noh<CR>zt
+  :imap <silent> <buffer> p <Esc>?^\s\+\d\+)<CR>:noh<CR>zt
+  :imap <silent> <buffer> f <Esc>/Finished in<CR>:noh<CR>zt
 endfunction
 
 call conque_term#register_function('after_startup', 'RubyConqueControls')
