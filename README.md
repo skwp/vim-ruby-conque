@@ -2,14 +2,17 @@ vim-ruby-conque.vim
 ============
 
  * Colorized Ruby, Rake, RSpec, and Cucumber output in vim using ConqueTerm
- * Dead simple -  ~20 lines of code
+ * Dead simple -  ~20 lines of code hi
  * Sensible keybindings (feel free to change):
-    * <code>nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR> </code>
-    * <code>nmap <silent> <Leader>ss :call RunRspecCurrentFileConque()<CR></code>
-    * <code>nmap <silent> <Leader>ll :call RunRspecCurrentLineConque()<CR></code>
-    * <code>nmap <silent> <Leader>cc :call RunCucumberCurrentFileConque()<CR></code>
-    * <code>nmap <silent> <Leader>cl :call RunCucumberCurrentLineConque()<CR></code>
-    * <code>nmap <silent> <Leader>RR :call RunRakeConque()<CR></code>
+ 
+```
+    nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR>
+    nmap <silent> <Leader>ss :call RunRspecCurrentFileConque()<CR>
+    nmap <silent> <Leader>ll :call RunRspecCurrentLineConque()<CR>
+    nmap <silent> <Leader>cc :call RunCucumberCurrentFileConque()<CR>
+    nmap <silent> <Leader>cl :call RunCucumberCurrentLineConque()<CR>
+    nmap <silent> <Leader>RR :call RunRakeConque()<CR>
+```
 
  * Requires: http://code.google.com/p/conque/
 
