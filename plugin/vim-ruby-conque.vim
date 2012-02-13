@@ -73,6 +73,20 @@ function! RunLastConqueCommand()
   endif
 endfunction
 
+" Get around Conques annoying trapping of input in some kind of strange
+" inputless input mode. Also add q to close the buffer. Could be enhanced
+" to allow n and p to jump between test cases or enter to go to the line.
+function RubyConqueControls(single_conque)
+  :map <buffer> j j
+  :map <buffer> k k
+  :map <buffer> q <C-w>c
+  :imap <buffer> j <Esc>j
+  :imap <buffer> k <Esc>k
+  :imap <buffer> q <Esc><C-w>c
+endfunction
+
+call conque_term#register_function('after_startup', 'RubyConqueControls')
+
 nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR>
 nmap <silent> <Leader>ss :call RunRspecCurrentFileConque()<CR>
 nmap <silent> <Leader>ll :call RunRspecCurrentLineConque()<CR>
