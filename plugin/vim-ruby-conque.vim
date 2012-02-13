@@ -36,6 +36,8 @@ function! RunSingleConque(command)
     exec "bdelete " . g:single_conque.buffer_name
   catch
   endtry
+  " Keep track of the last command issued.
+  let g:last_conque_command = a:command
   let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'])
 endfunction
 
@@ -63,9 +65,18 @@ function! RunRakeConque()
   call RunSingleConque("rake")
 endfunction
 
+function! RunLastConqueCommand()
+  if exists("g:last_conque_command")
+    call RunSingleConque(g:last_conque_command)
+  else
+    echo "You haven't run a Vim-Ruby-Conque command to repeat."
+  endif
+endfunction
+
 nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR>
 nmap <silent> <Leader>ss :call RunRspecCurrentFileConque()<CR>
 nmap <silent> <Leader>ll :call RunRspecCurrentLineConque()<CR>
 nmap <silent> <Leader>cl :call RunCucumberCurrentLineConque()<CR>
 nmap <silent> <Leader>cc :call RunCucumberCurrentFileConque()<CR>
 nmap <silent> <Leader>RR :call RunRakeConque()<CR>
+nmap <silent> <Leader>rl :call RunLastConqueCommand()<CR>

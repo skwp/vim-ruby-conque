@@ -12,6 +12,7 @@ vim-ruby-conque.vim
     nmap <silent> <Leader>cc :call RunCucumberCurrentFileConque()<CR>
     nmap <silent> <Leader>cl :call RunCucumberCurrentLineConque()<CR>
     nmap <silent> <Leader>RR :call RunRakeConque()<CR>
+    nmap <silent> <Leader>rl :call RunLastConqueCommand()<CR>
 ```
 
  * Requires: http://code.google.com/p/conque/
