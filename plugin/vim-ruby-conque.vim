@@ -17,7 +17,7 @@
 " This by setting up your vimrc like this:
 "
 " let g:ruby_conque_rspec_command='spec'
-" 
+"
 if !exists('g:ruby_conque_rspec_command')
   if executable('rspec')
     let g:ruby_conque_rspec_command='rspec'
@@ -28,12 +28,18 @@ if !exists('g:ruby_conque_rspec_command')
     echo "Warning: 'spec' or 'rspec' could not be found in your path."
     echohl NONE
   endif
+
+  echohl ErrorMsg
+  echo g:ruby_conque_rspec_command
+  echohl NONE
 endif
 
 " Always deletes any existing instance prior to runing the next one
 function! RunSingleConque(command)
   try
-    exec "bdelete " . g:single_conque.buffer_name
+    if(exists("g:single_conque"))
+      exec "bdelete " . g:single_conque.buffer_name
+    endif
   catch
   endtry
   let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'])
@@ -54,7 +60,7 @@ endfunction
 function! RunCucumberCurrentLineConque()
   call RunSingleConque("cucumber" . " " . bufname('%') . ":" . line('.'))
 endfunction
- 
+
 function! RunCucumberCurrentFileConque()
   call RunSingleConque("cucumber" . " " . bufname('%'))
 endfunction
