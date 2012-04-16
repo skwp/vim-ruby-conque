@@ -28,10 +28,6 @@ if !exists('g:ruby_conque_rspec_command')
     echo "Warning: 'spec' or 'rspec' could not be found in your path."
     echohl NONE
   endif
-
-  echohl ErrorMsg
-  echo g:ruby_conque_rspec_command
-  echohl NONE
 endif
 
 " Always deletes any existing instance prior to runing the next one
