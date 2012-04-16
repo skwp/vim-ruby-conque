@@ -38,6 +38,8 @@ function! RunSingleConque(command)
     endif
   catch
   endtry
+  " Keep track of the last command issued.
+  let g:last_conque_command = a:command
   let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'])
 endfunction
 
@@ -65,9 +67,38 @@ function! RunRakeConque()
   call RunSingleConque("rake")
 endfunction
 
+function! RunLastConqueCommand()
+  if exists("g:last_conque_command")
+    call RunSingleConque(g:last_conque_command)
+  else
+    echo "You haven't run a Vim-Ruby-Conque command to repeat."
+  endif
+endfunction
+
+" Get around Conques annoying trapping of input in some kind of strange
+" inputless input mode. Also added q to close the buffer. n and p jump between
+" errors in the output buffer.
+function RubyConqueControls(single_conque)
+  :map <buffer> j j
+  :map <buffer> k k
+  :map <buffer> q <C-w>c
+  :map <silent><buffer> n /^\s\+\d\+)<CR>:noh<CR>zt
+  :map <silent><buffer> p ?^\s\+\d\+)<CR>:noh<CR>zt
+  :map <silent><buffer> f /Finished in<CR>:noh<CR>zt
+  :imap <buffer> j <Esc>j
+  :imap <buffer> k <Esc>k
+  :imap <buffer> q <Esc><C-w>c
+  :imap <silent> <buffer> n <Esc>/^\s\+\d\+)<CR>:noh<CR>zt
+  :imap <silent> <buffer> p <Esc>?^\s\+\d\+)<CR>:noh<CR>zt
+  :imap <silent> <buffer> f <Esc>/Finished in<CR>:noh<CR>zt
+endfunction
+
+call conque_term#register_function('after_startup', 'RubyConqueControls')
+
 nmap <silent> <Leader>rr :call RunRubyCurrentFileConque()<CR>
 nmap <silent> <Leader>ss :call RunRspecCurrentFileConque()<CR>
 nmap <silent> <Leader>ll :call RunRspecCurrentLineConque()<CR>
 nmap <silent> <Leader>cl :call RunCucumberCurrentLineConque()<CR>
 nmap <silent> <Leader>cc :call RunCucumberCurrentFileConque()<CR>
 nmap <silent> <Leader>RR :call RunRakeConque()<CR>
+nmap <silent> <Leader>rl :call RunLastConqueCommand()<CR>
