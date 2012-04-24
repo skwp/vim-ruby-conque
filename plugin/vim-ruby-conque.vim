@@ -23,10 +23,6 @@ if !exists('g:ruby_conque_rspec_command')
     let g:ruby_conque_rspec_command='rspec'
   elseif executable('spec')
     let g:ruby_conque_rspec_command='spec'
-  else
-    echohl ErrorMsg
-    echo "Warning: 'spec' or 'rspec' could not be found in your path."
-    echohl NONE
   endif
 endif
 
