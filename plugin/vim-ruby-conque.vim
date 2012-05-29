@@ -52,6 +52,10 @@ function! RunRspecCurrentFileConque()
   call RunSingleConque(g:ruby_conque_rspec_command . " " . bufname('%') . " --color")
 endfunction
 
+function! RunRspecAllFilesConque()
+  call RunSingleConque(g:ruby_conque_rspec_command . " " . "spec" . " --color")
+endfunction
+
 function! RunCucumberCurrentLineConque()
   call RunSingleConque("cucumber" . " " . bufname('%') . ":" . line('.'))
 endfunction
