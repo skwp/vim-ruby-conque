@@ -76,6 +76,7 @@ endfunction
 " inputless input mode. Also added q to close the buffer. n and p jump between
 " errors in the output buffer.
 function! RubyConqueControls(single_conque)
+  :setlocal nolist
   :map <buffer> j j
   :map <buffer> k k
   :map <buffer> q <C-w>c
