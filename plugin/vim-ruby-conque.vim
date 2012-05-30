@@ -72,6 +72,11 @@ function! RunLastConqueCommand()
   endif
 endfunction
 
+" Requires https://github.com/skwp/vim-spec-finder
+function! RunRspecRelated()
+  call RunSingleConque(g:ruby_conque_rspec_command . " " . RelatedSpec() . " --color")
+endfunction
+
 " Get around Conques annoying trapping of input in some kind of strange
 " inputless input mode. Also added q to close the buffer. n and p jump between
 " errors in the output buffer.
@@ -94,3 +99,4 @@ nmap <silent> <Leader>rccl :call RunCucumberCurrentLineConque()<CR>
 nmap <silent> <Leader>rccc :call RunCucumberCurrentFileConque()<CR>
 nmap <silent> <Leader>rcRR :call RunRakeConque()<CR>
 nmap <silent> <Leader>rcrl :call RunLastConqueCommand()<CR>
+nmap <silent> <Leader>rcrel :call RunRspecRelated()<CR>

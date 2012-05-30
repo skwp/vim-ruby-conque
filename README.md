@@ -1,7 +1,8 @@
-vim-ruby-conque.vim
+Ruby Conque & Fast-spec Aware RSpec Finder
 ============
 
  * Colorized Ruby, Rake, RSpec, and Cucumber output in vim using ConqueTerm
+ * Spec Finder - use `Ctrl-s` to automatically find the related spec and open in a split, fast_spec aware!
  * Sensible keybindings (feel free to change), all prefixed with 'rc':
 
 ```vim
@@ -12,6 +13,9 @@ nmap <silent> <Leader>rccc :call RunCucumberCurrentFileConque()<CR>
 nmap <silent> <Leader>rccl :call RunCucumberCurrentLineConque()<CR>
 nmap <silent> <Leader>rcRR :call RunRakeConque()<CR>
 nmap <silent> <Leader>rcrl :call RunLastConqueCommand()<CR>
+
+nnoremap <silent> <C-s> :call RelatedSpecVOpen()<CR>
+nnoremap <silent> ,<C-s> :call RelatedSpecOpen()<CR>
 ```
 
  * Requires: http://code.google.com/p/conque/
@@ -34,7 +38,7 @@ nmap <silent> <D-L> :call RunRspecCurrentLineConque()<CR>
 nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
 ```
 
-Usage
+Using the Spec Runner
 -------------
 Try some of the keybindings listed above.
 
@@ -44,6 +48,22 @@ Upon running a test your cursor will be in the Conque buffer, you can use these 
     n   goes to the next Failure message.
     p   goes to the previous Failure message.
     f   goes to the Finished At section for an overview of the test.
+
+Using the Spec Finder
+--------------
+
+While inside a ruby file, invoke the shortcut (supplied as `Ctrl-s`), and
+the corresponding spec will be open. The assumptions are:
+
+  * Your specs live in spec/ or fast_spec/
+  * Your pwd (current dir) is the project root
+  * You use the same dir structure in your code and specs so that
+    code living at lib/foo/bar.rb has a spec at spec/lib/foo/bar_spec.rb
+
+For more information, please see doc/spec-finder.txt. There are included
+functions for opening the spec in the current window, and in a split, as
+well as just getting its full path.
+
 
 Configuration
 --------------
