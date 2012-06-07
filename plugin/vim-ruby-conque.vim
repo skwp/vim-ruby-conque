@@ -29,15 +29,24 @@ endif
 
 " Always deletes any existing instance prior to runing the next one
 function! RunSingleConque(command)
+
+  " Close quickfix and location windows that are in the way
+  :cclose
+  :lclose
+
+  call CloseSingleConque()
+  " Keep track of the last command issued.
+  let g:last_conque_command = a:command
+  let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'])
+endfunction
+
+function! CloseSingleConque()
   try
     if(exists("g:single_conque"))
       exec "bdelete " . g:single_conque.buffer_name
     endif
   catch
   endtry
-  " Keep track of the last command issued.
-  let g:last_conque_command = a:command
-  let g:single_conque = conque_term#open(a:command, ['botright split', 'res 10'])
 endfunction
 
 function! RunRubyCurrentFileConque()
