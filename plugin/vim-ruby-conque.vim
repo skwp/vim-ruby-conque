@@ -101,11 +101,22 @@ endfunction
 
 call conque_term#register_function('after_startup', 'RubyConqueControls')
 
-nmap <silent> <Leader>rcrr :call RunRubyCurrentFileConque()<CR>
-nmap <silent> <Leader>rcss :call RunRspecCurrentFileConque()<CR>
-nmap <silent> <Leader>rcll :call RunRspecCurrentLineConque()<CR>
-nmap <silent> <Leader>rccl :call RunCucumberCurrentLineConque()<CR>
-nmap <silent> <Leader>rccc :call RunCucumberCurrentFileConque()<CR>
-nmap <silent> <Leader>rcRR :call RunRakeConque()<CR>
-nmap <silent> <Leader>rcrl :call RunLastConqueCommand()<CR>
-nmap <silent> <Leader>rcrel :call RunRspecRelated()<CR>
+command! RunRubyCurrentFileConque call RunRubyCurrentFileConque()
+command! RunRspecCurrentFileConque call RunRspecCurrentFileConque()
+command! RunRspecCurrentLineConque call RunRspecCurrentLineConque()
+command! RunCucumberCurrentLineConque call RunCucumberCurrentLineConque()
+command! RunCucumberCurrentFileConque call RunCucumberCurrentFileConque()
+command! RunRakeConque call RunRakeConque()
+command! RunLastConqueCommand call RunLastConqueCommand()
+command! RunRspecRelated call RunRspecRelated()
+command! CloseSingleConque call CloseSingleConque()
+
+nmap <silent> <Leader>rcrr :RunRubyCurrentFileConque<CR>
+nmap <silent> <Leader>rcss :RunRspecCurrentFileConque<CR>
+nmap <silent> <Leader>rcll :RunRspecCurrentLineConque<CR>
+nmap <silent> <Leader>rccl :RunCucumberCurrentLineConque<CR>
+nmap <silent> <Leader>rccc :RunCucumberCurrentFileConque<CR>
+nmap <silent> <Leader>rcRR :RunRakeConque<CR>
+nmap <silent> <Leader>rcrl :RunLastConqueCommand<CR>
+nmap <silent> <Leader>rcrel :RunRspecRelated<CR>
+nmap <silent> <Leader>rccc :CloseSingleConque<CR>
