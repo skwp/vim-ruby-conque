@@ -36,5 +36,8 @@ function! RelatedSpecVOpen()
   endif
 endfunction
 
-nnoremap <silent> <C-s> :call RelatedSpecVOpen()<CR>
-nnoremap <silent> ,<C-s> :call RelatedSpecOpen()<CR>
+command! RelatedSpecVOpen call RelatedSpecVOpen()
+command! RelatedSpecOpen call RelatedSpecOpen()
+
+nnoremap <silent> <C-s> :RelatedSpecVOpen<CR>
+nnoremap <silent> ,<C-s> :RelatedSpecOpen<CR>
