@@ -23,6 +23,8 @@ if !exists('g:ruby_conque_rspec_command')
     let g:ruby_conque_rspec_command='rspec'
   elseif executable('spec')
     let g:ruby_conque_rspec_command='spec'
+  elseif executable('bundle exec rspec')
+    let g:ruby_conque_rspec_command='bundle exec rspec'
   endif
 
 endif
