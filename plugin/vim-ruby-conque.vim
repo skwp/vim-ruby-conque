@@ -16,18 +16,23 @@
 " installed, or 'spec' for rspec1. You can override
 " This by setting up your vimrc like this:
 "
-" let g:ruby_conque_rspec_command='spec'
+" let g:ruby_conque_rspec_runner='spec'
 "
-if !exists('g:ruby_conque_rspec_command')
-  if executable('rspec')
-    let g:ruby_conque_rspec_command='rspec'
-  elseif executable('spec')
-    let g:ruby_conque_rspec_command='spec'
-  elseif executable('bundle exec rspec')
-    let g:ruby_conque_rspec_command='bundle exec rspec'
+function! GetRubyConqueRspecCommand()
+  if exists('g:ruby_conque_rspec_runner')
+    return g:ruby_conque_rspec_runner
+  else
+    if executable('rspec')
+      return 'rspec'
+    elseif executable('bundle exec rspec')
+      return 'bundle exec rspec'
+    elseif executable('spec')
+      return 'spec'
+    elseif executable('bundle exec spec')
+      return 'bundle exec spec'
+    endif
   endif
-
-endif
+endfunction
 
 " Always deletes any existing instance prior to runing the next one
 function! RunSingleConque(command)
@@ -56,11 +61,11 @@ function! RunRubyCurrentFileConque()
 endfunction
 
 function! RunRspecCurrentLineConque()
-  call RunSingleConque(g:ruby_conque_rspec_command . " " . bufname('%') . " -l "  . line('.') . " --color")
+  call RunSingleConque(GetRubyConqueRspecCommand() . " " . bufname('%') . " -l "  . line('.') . " --color")
 endfunction
 
 function! RunRspecCurrentFileConque()
-  call RunSingleConque(g:ruby_conque_rspec_command . " " . bufname('%') . " --color")
+  call RunSingleConque(GetRubyConqueRspecCommand() . " " . bufname('%') . " --color")
 endfunction
 
 function! RunCucumberCurrentLineConque()
@@ -85,7 +90,7 @@ endfunction
 
 " Requires https://github.com/skwp/vim-spec-finder
 function! RunRspecRelated()
-  call RunSingleConque(g:ruby_conque_rspec_command . " " . RelatedSpec() . " --color")
+  call RunSingleConque(GetRubyConqueRspecCommand() . " " . RelatedSpec() . " --color")
 endfunction
 
 " Get around Conques annoying trapping of input in some kind of strange
