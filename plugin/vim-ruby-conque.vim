@@ -34,6 +34,19 @@ function! GetRubyConqueRspecCommand()
   endif
 endfunction
 
+" Lets you choose the ruby interpreter
+"
+" let g:ruby_conque_ruby='rvm-auto-ruby'
+"
+function! GetRubyConqueRubyCommand()
+  if exists('g:ruby_conque_ruby')
+    return g:ruby_conque_rspec_runner
+  else
+    return 'ruby'
+  endif
+endfunction
+
+
 " Always deletes any existing instance prior to runing the next one
 function! RunSingleConque(command)
 
@@ -57,7 +70,7 @@ function! CloseSingleConque()
 endfunction
 
 function! RunRubyCurrentFileConque()
-  call RunSingleConque("ruby " . bufname('%'))
+  call RunSingleConque(GetRubyConqueRubyCommand() . "  " . bufname('%'))
 endfunction
 
 function! RunRspecCurrentLineConque()
