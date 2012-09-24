@@ -40,7 +40,7 @@ endfunction
 "
 function! GetRubyConqueRubyCommand()
   if exists('g:ruby_conque_ruby')
-    return g:ruby_conque_rspec_runner
+    return g:ruby_conque_ruby
   else
     return 'ruby'
   endif
