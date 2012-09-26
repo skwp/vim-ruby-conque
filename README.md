@@ -4,6 +4,7 @@ Ruby Conque & Fast-spec Aware RSpec Finder
  * Colorized Ruby, Rake, RSpec, and Cucumber output in vim using ConqueTerm
  * Spec Finder - use `Ctrl-s` to automatically find the related spec and open in a split, fast_spec aware!
  * Sensible keybindings (feel free to change), all prefixed with 'rc':
+ * Switch between running rspec1 and rspec2 with `:Rspec1` and `:Rspec2` (you need both installed)
 
 ```vim
 nmap <silent> <Leader>rcrr :call RunRubyCurrentFileConque()<CR>

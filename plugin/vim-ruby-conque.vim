@@ -106,6 +106,16 @@ function! RubyConqueControls(single_conque)
   :map <silent><buffer> f /Finished in<CR>:noh<CR>zt
 endfunction
 
+function! UseRspec1()
+  let g:ruby_conque_rspec_runner='spec'
+  echo "Now using spec runner (RSpec 1)"
+endfunction
+
+function! UseRspec2()
+  let g:ruby_conque_rspec_runner='rspec'
+  echo "Now using rspec runner (RSpec 2)"
+endfunction
+
 call conque_term#register_function('after_startup', 'RubyConqueControls')
 
 command! RunRubyCurrentFileConque call RunRubyCurrentFileConque()
@@ -117,6 +127,8 @@ command! RunRakeConque call RunRakeConque()
 command! RunLastConqueCommand call RunLastConqueCommand()
 command! RunRspecRelated call RunRspecRelated()
 command! CloseSingleConque call CloseSingleConque()
+command! Rspec1 call UseRspec1()
+command! Rspec2 call UseRspec2()
 
 nmap <silent> <Leader>rcrr :RunRubyCurrentFileConque<CR>
 nmap <silent> <Leader>rcss :RunRspecCurrentFileConque<CR>
@@ -127,3 +139,5 @@ nmap <silent> <Leader>rcRR :RunRakeConque<CR>
 nmap <silent> <Leader>rcrl :RunLastConqueCommand<CR>
 nmap <silent> <Leader>rcrel :RunRspecRelated<CR>
 nmap <silent> <Leader>rccc :CloseSingleConque<CR>
+nmap <silent> <Leader>rcr1 :Rspec1<CR>
+nmap <silent> <Leader>rcr2 :Rspec2<CR>
