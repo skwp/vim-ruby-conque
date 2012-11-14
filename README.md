@@ -72,7 +72,7 @@ Configuration
 This plugin tries to detect whether you use 'rspec' (rspec2) or
 'spec' (rspec1) and set the default executable correctly. To override in your ~/.vimrc:
 
-    let g:ruby_conque_rspec_command='spec'
+    let g:ruby_conque_rspec_runner='spec'
 
 Contribute
 --------------
