@@ -34,6 +34,18 @@ function! GetRubyConqueRspecCommand()
   endif
 endfunction
 
+function! GetRubyConqueCucumberCommand()
+  if exists('g:ruby_conque_cucumber_runner')
+    return g:ruby_conque_cucumber_runner
+  else
+    if executable('cucumber')
+      return 'cucumber'
+    elseif executable('bundle exec cucumber')
+      return 'bundle exec cucumber'
+    endif
+  endif
+endfunction
+
 " Always deletes any existing instance prior to runing the next one
 function! RunSingleConque(command)
 
@@ -69,11 +81,11 @@ function! RunRspecCurrentFileConque()
 endfunction
 
 function! RunCucumberCurrentLineConque()
-  call RunSingleConque("cucumber" . " " . bufname('%') . ":" . line('.'))
+  call RunSingleConque(GetRubyConqueCucumberCommand() . " " . bufname('%') . ":" . line('.'))
 endfunction
 
 function! RunCucumberCurrentFileConque()
-  call RunSingleConque("cucumber" . " " . bufname('%'))
+  call RunSingleConque(GetRubyConqueCucumberCommand() . " " . bufname('%'))
 endfunction
 
 function! RunRakeConque()

@@ -74,6 +74,12 @@ This plugin tries to detect whether you use 'rspec' (rspec2) or
 
     let g:ruby_conque_rspec_runner='spec'
 
+It will also do the same for cucumber, trying to determine whether to
+run 'cucumber' or 'bundle exec cucumber' and set the default correctly.
+You can override in your ~/.vimrc
+
+    let g:ruby_conque_cucumber_runner='cucumber'
+
 Contribute
 --------------
  * Code by Yan Pritzker and Matt Furden
