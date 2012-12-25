@@ -25,7 +25,7 @@ nnoremap <silent> ,<C-s> :call RelatedSpecOpen()<CR>
  * Install: copy plugin/* to ~/.vim/plugin or if using pathogen,
    copy the whole directroy to ~/.vim/bundle
 
-Recommended keybinings
+Recommended keybindings
 -------------
 
 Chords are faster than typing out long strings:
