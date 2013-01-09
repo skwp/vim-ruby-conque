@@ -5,6 +5,11 @@ function! RelatedSpec()
   let l:fname = expand("%:t")
   let l:filepath_without_lib = substitute(l:filepath, "lib/[^/]*", "", "")
 
+  " We are already in a spec
+  if l:fullpath =~ "_spec.rb$"
+    return l:fullpath
+  endif
+
   " Possible names for the spec/test for the file we're looking at
   let l:test_names = [substitute(l:fname, ".rb$", "_spec.rb", ""), substitute(l:fname, ".rb$", "_test.rb", "")]
 
