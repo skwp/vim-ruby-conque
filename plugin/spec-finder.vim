@@ -14,7 +14,7 @@ function! RelatedSpec()
   let l:test_names = [substitute(l:fname, ".rb$", "_spec.rb", ""), substitute(l:fname, ".rb$", "_test.rb", "")]
 
   " Possible paths
-  let l:test_paths = ["spec", "fast_spec", "test"]
+  let l:test_paths = ["spec", "spec/unit", "spec/functional", "fast_spec", "test"]
 
   for test_name in l:test_names
     for path in l:test_paths
