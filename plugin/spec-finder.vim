@@ -63,8 +63,17 @@ function! s:RelatedSpecVOpen()
   endif
 endfunction
 
+function! s:RelatedSpecTabOpen()
+  let l:spec_path = s:RelatedSpecOrFile()
+  if filereadable(l:spec_path)
+    execute ":tabnew " . l:spec_path
+  endif
+endfunction
+
+command! RelatedSpecTabOpen call s:RelatedSpecTabOpen()
 command! RelatedSpecVOpen call s:RelatedSpecVOpen()
 command! RelatedSpecOpen call s:RelatedSpecOpen()
 
+nnoremap <silent> <Leader><C-s> :RelatedSpecTabOpen<CR>
 nnoremap <silent> <C-s> :RelatedSpecVOpen<CR>
 nnoremap <silent> ,<C-s> :RelatedSpecOpen<CR>
