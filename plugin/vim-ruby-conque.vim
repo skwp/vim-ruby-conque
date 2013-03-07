@@ -93,6 +93,11 @@ function! RunRspecRelated()
   call RunSingleConque(GetRubyConqueRspecCommand() . " " . RelatedSpec() . " --color")
 endfunction
 
+" Requires https://github.com/skwp/vim-spec-finder
+function! RunBaconRelated()
+  call RunSingleConque("bacon" . " " . RelatedSpec() . " -q")
+endfunction
+
 " Get around Conques annoying trapping of input in some kind of strange
 " inputless input mode. Also added q to close the buffer. n and p jump between
 " errors in the output buffer.
@@ -126,6 +131,7 @@ command! RunCucumberCurrentFileConque call RunCucumberCurrentFileConque()
 command! RunRakeConque call RunRakeConque()
 command! RunLastConqueCommand call RunLastConqueCommand()
 command! RunRspecRelated call RunRspecRelated()
+command! RunBaconRelated call RunBaconRelated()
 command! CloseSingleConque call CloseSingleConque()
 command! Rspec1 call UseRspec1()
 command! Rspec2 call UseRspec2()
