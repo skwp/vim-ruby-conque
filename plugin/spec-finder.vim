@@ -74,6 +74,6 @@ command! RelatedSpecTabOpen call s:RelatedSpecTabOpen()
 command! RelatedSpecVOpen call s:RelatedSpecVOpen()
 command! RelatedSpecOpen call s:RelatedSpecOpen()
 
-nnoremap <silent> <Leader><C-s> :RelatedSpecTabOpen<CR>
+nnoremap <silent> t<C-s> :RelatedSpecTabOpen<CR>
 nnoremap <silent> <C-s> :RelatedSpecVOpen<CR>
 nnoremap <silent> ,<C-s> :RelatedSpecOpen<CR>
