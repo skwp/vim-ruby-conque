@@ -34,6 +34,14 @@ function! GetRubyConqueRspecCommand()
   endif
 endfunction
 
+function! GetRubyConqueRspecOptions()
+  if exists('g:ruby_conque_rspec_options')
+    return g:ruby_conque_rspec_options
+  else
+    return ' --color'
+  endif
+endfunction
+
 function! GetRubyConqueCucumberCommand()
   if exists('g:ruby_conque_cucumber_runner')
     return g:ruby_conque_cucumber_runner
@@ -73,15 +81,15 @@ function! RunRubyCurrentFileConque()
 endfunction
 
 function! RunRspecCurrentLineConque()
-  call RunSingleConque(GetRubyConqueRspecCommand() . " " . bufname('%') . " -l "  . line('.') . " --color")
+  call RunSingleConque(GetRubyConqueRspecCommand() . " " . bufname('%') . " -l "  . line('.') . GetRubyConqueRspecOptions())
 endfunction
 
 function! RunRspecCurrentFileConque()
-  call RunSingleConque(GetRubyConqueRspecCommand() . " " . bufname('%') . " --color")
+  call RunSingleConque(GetRubyConqueRspecCommand() . " " . bufname('%') . GetRubyConqueRspecOptions())
 endfunction
 
 function! RunRspecAllFilesConque()
-  call RunSingleConque(g:ruby_conque_rspec_command . " " . "spec" . " --color")
+  call RunSingleConque(g:ruby_conque_rspec_command . " " . "spec" . GetRubyConqueRspecOptions())
 endfunction
 
 function! RunCucumberCurrentLineConque()
@@ -106,7 +114,7 @@ endfunction
 
 " Requires https://github.com/skwp/vim-spec-finder
 function! RunRspecRelated()
-  call RunSingleConque(GetRubyConqueRspecCommand() . " " . RelatedSpec() . " --color")
+  call RunSingleConque(GetRubyConqueRspecCommand() . " " . RelatedSpec() . GetRubyConqueRspecOptions())
 endfunction
 
 " Get around Conques annoying trapping of input in some kind of strange
